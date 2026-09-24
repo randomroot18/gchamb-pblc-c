@@ -1,10 +1,10 @@
 # Ujjain remote monitoring and OTA staging
 
-The reported current Ujjain firmware already serves `GET /api/status` on its LAN and can persist an HTTPS OTA manifest URL through `POST /api/config`. It is also reported on Gurgaon, so update **only Ujjain's own IP**. The firmware family is still generic (`germination-chamber`), and the GitHub Pages URL compiled into that current build is absent from this repository.
+The observed Ujjain firmware already serves `GET /api/status` on its LAN and can persist an HTTPS OTA manifest URL through `POST /api/config`. It is also reported on Gurgaon, so update **only Ujjain's own IP**. The observed board reports firmware `0.1.0-bootstrap`, which matches the earlier supplied source snapshot, not the later supplied `0.1.0-gurgaon-bootstrap-ui` source. Its OTA manifest is currently unconfigured. The firmware family is generic (`germination-chamber`), and its default GitHub Pages manifest path is absent from this repository.
 
 ## At the Ujjain controller's current LAN
 
-Identify the Ujjain ESP32 IP from its serial log, DHCP leases, or local dashboard. Check `http://DEVICE_IP/api/status` and confirm `fw` is `0.1.0-gurgaon-bootstrap-ui` and `device_id` is the intended board before posting anything. The code file supplied by the user is a source claim, not a remote attestation of its flashed bytes.
+Identify the Ujjain ESP32 IP from its serial log, DHCP leases, or local dashboard. Check `http://DEVICE_IP/api/status` and confirm `fw` is `0.1.0-bootstrap` and `device_id` matches the intended physical board before posting anything. The code file supplied by the user is a source claim, not a remote attestation of its flashed bytes.
 
 From PowerShell, with **only Ujjain's verified IP** substituted:
 
@@ -15,7 +15,7 @@ Start-Sleep -Seconds 12
 (Invoke-RestMethod -Uri 'http://DEVICE_IP/api/status').ota
 ```
 
-An OTA result saying the server offers an **older 0.0.0** version confirms the safe hold manifest was fetched and parsed. **It installs nothing.** A TLS or HTTP error means OTA has not been established. The next scheduled check may retain its old deadline (possibly up to 12 hours) until the controller reconnects or reboots; changing `ota_min` does not reschedule that already-set deadline in this version. Do not reset a running chamber merely to accelerate a test.
+The `build` field is the firmware compilation timestamp (`__DATE__` / `__TIME__`), not the current date or time. The `epoch` value in the status screenshot corresponds to 24 September 2026 at 23:18:15 India time, matching the phone clock; `time_valid: true` indicates NTP time was obtained. An OTA result saying the server offers an **older 0.0.0** version confirms the safe hold manifest was fetched and parsed. **It installs nothing.** A TLS or HTTP error means OTA has not been established. The next scheduled check may retain its old deadline (possibly up to 12 hours) until the controller reconnects or reboots; changing `ota_min` does not reschedule that already-set deadline in this version. Do not reset a running chamber merely to accelerate a test.
 
 ## On a computer that stays on the **same LAN as Ujjain**
 
