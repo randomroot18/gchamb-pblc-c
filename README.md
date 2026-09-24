@@ -1,14 +1,9 @@
 # Shunya germination chamber firmware
 
-Shared repository for the **Ujjain** and **Gurgaon** chamber firmware and, after commissioning, their OTA release artifacts.
+This is the shared repository for the **Ujjain** and **Gurgaon** chambers. The `shared/source_snapshot/` folder preserves the exact sketch supplied for review; it is not proof of what is running on either physical device.
 
-The firmware sketch supplied in September 2026 has `DEFAULT_OTA_MANIFEST_URL` set to an empty string. An ESP32 can store a different manifest URL in NVS through its local configuration API, so this GitHub repository alone does not establish what URL is configured on either physical device. Verify `/api/status` and the saved system configuration on each chamber before an OTA release.
+- `chambers/ujjain/` contains the separate Ujjain bench profile and build, with four used relays, no recirculation fan, and a heater locked OFF pending thermal tests.
+- `chambers/gurgaon/` is intentionally not assigned a release profile yet. Obtain its actual firmware build, `/api/status` result, pin map and OTA URL first.
+- `germination-chamber/ujjain/` and `germination-chamber/gurgaon/` are **future** OTA release paths. No manifests or firmware binaries are published here.
 
-## Intended layout
-
-- `chambers/ujjain/` — Ujjain hardware profile, source, pin map and tests.
-- `chambers/gurgaon/` — Gurgaon profile after its actual firmware and wiring are verified.
-- `shared/` — code shared deliberately between profiles.
-- `germination-chamber/ujjain/` and `germination-chamber/gurgaon/` — distinct OTA release channels when authenticated updates and rollback are ready.
-
-**No firmware binaries or OTA manifests are published from this branch.** Device profiles must never auto-update one another merely because they share this repository. Keep hardware safety controls local and independent of Wi-Fi.
+The supplied sketch's `DEFAULT_OTA_MANIFEST_URL` is empty. Each device may instead have an OTA manifest URL stored in NVS, so neither this source nor the repository name proves the live URL. An update manifest must identify the correct hardware profile, and release procedures must prevent Ujjain firmware from reaching Gurgaon and vice versa. Keep the heater safety loop local, independently protected and functional without the server or Wi-Fi.
