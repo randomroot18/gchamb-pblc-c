@@ -11,7 +11,8 @@ From PowerShell, with **only Ujjain's verified IP** substituted:
 ```powershell
 Invoke-RestMethod -Method Post -Uri 'http://DEVICE_IP/api/config?ota_url=https%3A%2F%2Fraw.githubusercontent.com%2Frandomroot18%2Fgchamb-pblc-c%2Fmain%2Fota%2Fujjain%2Fmanifest.json&ota_min=2'
 Invoke-RestMethod -Uri 'http://DEVICE_IP/api/check-update'
-Invoke-RestMethod -Uri 'http://DEVICE_IP/api/status'
+Start-Sleep -Seconds 12
+(Invoke-RestMethod -Uri 'http://DEVICE_IP/api/status').ota
 ```
 
 An OTA result saying the server offers an **older 0.0.0** version confirms the safe hold manifest was fetched and parsed. **It installs nothing.** A TLS or HTTP error means OTA has not been established. The next scheduled check may retain its old deadline (possibly up to 12 hours) until the controller reconnects or reboots; changing `ota_min` does not reschedule that already-set deadline in this version. Do not reset a running chamber merely to accelerate a test.
