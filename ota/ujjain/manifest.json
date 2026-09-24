@@ -1,0 +1,7 @@
+{
+  "version": "0.0.0",
+  "device_family": "germination-chamber",
+  "url": "https://raw.githubusercontent.com/randomroot18/gchamb-pblc-c/main/ota/ujjain/firmware.bin",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "status": "HOLD: no firmware published; this deliberately reports an older version and cannot trigger an update"
+}
