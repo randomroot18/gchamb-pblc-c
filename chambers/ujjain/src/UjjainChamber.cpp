@@ -1,3 +1,5 @@
+// HOLD: based on earlier 0.1.0-bootstrap sketch, not the current reported shared build.
+// Do not flash on Ujjain or Gurgaon; GPIO13 heater is locked OFF.
 // ============================================================================
 // Shunya germination chamber controller - field bootstrap build
 //
