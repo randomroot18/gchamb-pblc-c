@@ -1,0 +1,16 @@
+name: Bench build and logic checks
+on:
+  push:
+  pull_request:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: g++ -std=c++17 -Wall -Wextra -Werror -I include tests/heater_policy_test.cpp -o /tmp/jen-heater-test && /tmp/jen-heater-test
+      - run: python3 tests/collector_test.py
+      - run: pip install platformio
+      - run: pio run -e jen_esp32u
