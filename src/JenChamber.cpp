@@ -21,6 +21,7 @@
 // Jen profile removes recirculation and adds a heater policy, disabled for bench tests.
 // ============================================================================
 
+#include <Arduino.h>
 #include <Wire.h>
 #include <new>
 #include "HeaterPolicy.h"
