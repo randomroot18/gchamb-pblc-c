@@ -1,0 +1,6 @@
+**/telemetry_private.h
+**/*.bin
+**/*.elf
+**/*.map
+**/__pycache__/
+**/*.sqlite3
