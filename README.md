@@ -27,7 +27,7 @@ This follows the attached Rev A wiring guide except the Jen chamber **has no rec
 
 ## Build and bench checks
 
-1. With PlatformIO, run `pio run -e jen_esp32u` from this directory. It selects `esp32dev` and the OTA-capable `min_spiffs.csv` partition table. Confirm your exact board has 4 MB flash. **Firmware compilation has not been run in this environment; GitHub CI is configured to attempt it.**
+1. With PlatformIO, run `pio run -e jen_esp32u` from this directory. It selects `esp32dev` and the OTA-capable `min_spiffs.csv` partition table. Confirm your exact board has 4 MB flash. **GitHub CI compiled this bench firmware successfully on ESP32 Arduino core 2.0.17 (PlatformIO espressif32 6.12.0): 916,725 bytes of 1,966,080-byte application slot, 51,436 bytes static RAM. Physical hardware tests are still outstanding.**
 2. Run `g++ -std=c++17 -Wall -Wextra -Werror -I include tests/heater_policy_test.cpp -o /tmp/jen-heater-test && /tmp/jen-heater-test` and `python3 tests/collector_test.py`.
 3. Disconnect heater mains and all relay contact-side loads. Verify each relay IN is HIGH during boot and after reset, especially GPIO13 and GPIO19. Check serial at **115200** and the TFT at 10 MHz. Check two I²C sensors independently. Confirm `/api/status` shows exactly four devices and `heater.commissioned:false`.
 4. On a trusted 2.4 GHz Wi-Fi network, provision via local AP and check `/api/status`. For collector bench work: set `JEN_DEVICE_TOKEN` (32+ random chars), `JEN_ADMIN_PASSWORD` (16+ random chars), run `python3 collector/server.py`, and point a **local test** telemetry URL through a TLS reverse proxy. The firmware refuses plain HTTP. The dashboard uses HTTP Basic auth (`admin` and your password) and must be accessed over HTTPS when remote.
