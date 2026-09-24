@@ -1,6 +1,8 @@
-# Shunya Ujjain chamber — bench firmware
+# Shunya Ujjain chamber — earlier-source bench firmware
 
-This repository is the independent codebase for the Ujjain ESP32-WROOM-32U chamber. The source was adapted from the Shunya prototype sketch. **This is a bench build, not heater-ready field firmware.** The heating output is compile-time disabled (`HEATER_COMMISSIONED = false`); remote OTA is also disabled until authentication and rollback are completed. Never treat a passing software test as approval to energize a 230 V heater.
+> **HOLD: DO NOT FLASH.** This build was adapted from the earlier `0.1.0-bootstrap` attachment. The user subsequently confirmed a different `0.1.0-gurgaon-bootstrap-ui` sketch on both physical chambers. Rebase and retest before use. The heater is locked OFF.
+
+This folder is an isolated bench profile for the Ujjain ESP32-WROOM-32U chamber. The source was adapted from the Shunya prototype sketch. **This is a bench build, not heater-ready field firmware.** The heating output is compile-time disabled (`HEATER_COMMISSIONED = false`); remote OTA is also disabled until authentication and rollback are completed. Never treat a passing software test as approval to energize a 230 V heater.
 
 ## Physical pin map
 
