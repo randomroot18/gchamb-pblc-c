@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1-ota-test",
-  "url": "https://raw.githubusercontent.com/randomroot18/gchamb-pblc-c/main/firmware/ujjain/1.0.1-ota-test/ShunyaUjjain.ino.bin",
-  "sha256": "432822922528d4be5141614f219dc2231ef3e1474e038c2b29f8cd52313a7fa2",
+  "version": "1.0.3-ota-test",
+  "url": "https://raw.githubusercontent.com/randomroot18/gchamb-pblc-c/main/firmware/ujjain/1.0.3-ota-test/ShunyaUjjain.ino.bin",
+  "sha256": "f5ae812aa37fd3ede1b3ad5a6cf66f2a0aa10272ce7883da4d56fbd1f52a929a",
   "device_family": "shunya-ujjain-chamber"
 }
